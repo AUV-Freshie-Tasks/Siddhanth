@@ -10,7 +10,7 @@ public:
 	
 	//template<typename T>
 	
-	Matrix(vector<vector<T>>& a){
+	Matrix(vector<vector<T>> a){
 	row = a.size();
 	col = a[0].size();
 	m1 = a;
@@ -18,7 +18,10 @@ public:
 	
 	//template<typename T>
 	vector<T>& operator[](int i){
-	return m1[i];	
+		return m1[i];	
+	};
+	const vector<T>& operator[](int i) const {
+		return m1[i];	
 	};
 	
 	void print(){
@@ -39,9 +42,9 @@ public:
 	};
 	
 	//template<typename T>
-	Matrix multInt(int a, Matrix b){
+	Matrix multInt(float a, Matrix b){
 		int r = b.row;
-		vector<vector<T>> idv(r, vector<T>(r, 0)); //making identity matrix for the augment thing
+		vector<vector<float>> idv(r, vector<T>(r, 0)); //making identity matrix for the augment thing
 		
 		for(int i = 0; i<r; i++){
 			for(int j=0; j<r; j++){
@@ -78,7 +81,7 @@ public:
 	};
 
 	//template<typename T>
-	Matrix operator+(Matrix b){
+	Matrix operator+(const Matrix &b) const {
 		if((row != b.row)||(col != b.col))
 				throw std::invalid_argument("Matrix size mismatch");
 		
@@ -94,7 +97,7 @@ public:
 	};
 
 	//template<typename T>	
-	Matrix operator*(Matrix b){
+	Matrix operator*(const Matrix &b)const {
 		//if(a.col != b.row)
 			//return;
 		vector<vector<T>> v(row, vector<T>(b.col, 0));
@@ -218,14 +221,14 @@ public:
 		Matrix y = Y;
 
     		// theta = [c; m] initialized to 0
-   		vector<vector<float>> theta = {{0.0},{0.0}};
+   		vector<vector<float>> thetav = {{0.0},{0.0}};
 		Matrix theta = Matrix(thetav);
 
     		for (int iter = 0; iter < iters; iter++) {
         		Matrix preds = X*theta;
         		Matrix error = preds + multInt(-1,y);
-        		Matrix gradient = (xt * error) * (1.0 / n);
-        		theta = theta - (gradient * alpha);
+        		Matrix gradient = multInt(1.0/n, xt*error);
+        		theta = theta + multInt(-1, multInt(alpha, gradient));
     		}
 
     		return theta;
