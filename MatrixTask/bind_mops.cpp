@@ -15,28 +15,24 @@ void bind_mops(py::module_& m) {
             py::arg("other"),
             "Multiply two matrices")
         
-        .def("__matmul__", &Matrix::operator*,
-            py::arg("other"),
-            "Matrix multiplication using @ operator")
-        
-        .def("swap_row", &Matrix::swapRow,
+        .def("swapRow", &Matrix::swapRow,
             py::arg("r1"), py::arg("r2"),
             "Swap two rows (1-indexed)")
         
-        .def("swap_col", &Matrix::swapCol,
+        .def("swapCol", &Matrix::swapCol,
             py::arg("c1"), py::arg("c2"),
             "Swap two columns (1-indexed)")
         
         .def("transpose", &Matrix::Transpose,
             "Transpose the matrix in-place")
         
-        .def("lu_decomp", &Matrix::LUdecomp,
+        .def("luDecomp", &Matrix::LUdecomp,
             py::arg("A"), py::arg("B"),
-            "Solve AX = B using LU decomposition")
+            "Solve AX = B with LU decomposition")
         
-        .def("gradient_descent", &Matrix::gradientDescent,
+        .def("gradientDescent", &Matrix::gradientDescent,
             py::arg("X"), py::arg("Y"), 
             py::arg("alpha") = 0.01, 
             py::arg("iters") = 1000,
-            "Perform gradient descent");
+            "find slope");
 }

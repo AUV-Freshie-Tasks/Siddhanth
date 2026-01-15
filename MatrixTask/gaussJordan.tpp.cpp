@@ -1,4 +1,4 @@
-#include"matrix.hpp"
+/*#include"matrix.hpp"
 #include<cmath>
 #include<algorithm>
 using namespace std;
@@ -61,3 +61,4 @@ Matrix Matrix::gaussJordan(){
 i		return 0;
 	}*/
 }
+*/

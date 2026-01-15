@@ -1,7 +1,7 @@
 #include<pybind11/pybind11.h>
 #include"matrix.hpp"
 namespace py = pybind11;
-using namespace std;
+//using namespace std;
 
 void bind_matrix(py::module_& m) {
     py::class_<Matrix>(m, "Matrix")

@@ -7,7 +7,7 @@ Matrix Matrix::gaussJordan(){
 	int r = row;
 	Matrix mtr(m1);
 
-	vector<vector<float>> idv(r, vector<float>(r, 0)); //making identity matrix for the augment thing
+	vector<vector<T>> idv(r, vector<T>(r, 0)); //making identity matrix for the augment thing
 	for(int i = 0; i<r; i++){
 		for(int j=0; j<r; j++){
 			if(i==j) idv[i][j] = 1.0;
@@ -20,10 +20,10 @@ Matrix Matrix::gaussJordan(){
 
 
 	for(int i = 0; i < r; i++){
-		float mx = -10000000;
+		T mx = -10000000;
 		int idx;
 		for(int j = i; j < r; j++){
-			float temp = std::max((float)mx, (float)mtr[j][i]);
+			T temp = std::max((T)mx, (T)mtr[j][i]);
 			mx = temp;
 			if(mtr[j][i] == mx)
 				idx = j;
@@ -42,7 +42,7 @@ Matrix Matrix::gaussJordan(){
 			}
 		for(int sub = 0; sub<r; sub++){
 			if(sub != i){
-			float x = mtr[sub][i]/mtr[i][i];
+			T x = mtr[sub][i]/mtr[i][i];
 				for(int k = 0; k < r; k++){
 					mtr[sub][k] -= x*mtr[i][k];
 					idm[sub][k] -= x*idm[i][k];

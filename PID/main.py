@@ -15,6 +15,7 @@ class PID:
         d = self.drv.diff(error, dt)
         return p+i+d
     
+
 kp = 0.1 #0.1
 ki = 0.005 #0.005
 kd = 0.187
@@ -28,7 +29,10 @@ iters = 100 #keep it totaltime/dt
 rf = 0.5 #response factor (kinda like sluggishness)
 current = initial_value
 
+def func(inp):
+    return 2*inp*inp - 3*inp
+
 for i in range(100):
-    out = controller1.cycle(setpoint, current, dt)
-    current += rf*out
+    out = controller1.cycle(func(setpoint), func(current), dt)
+    current += out
     print(f"Current Value: {current:.2f} | Output: {out:.2f}")

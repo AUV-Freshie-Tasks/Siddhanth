@@ -1,4 +1,4 @@
-#include"matrix.hpp"
+/*#include"matrix.hpp"
 #include<vector>
 #include<iostream>
 using namespace std;
@@ -24,14 +24,5 @@ void Matrix::print(){
 		cout<<endl;
 	}
 };
-
-struct LUCacheNode {
-    Matrix A;
-    Matrix B;
-    Matrix X;  
-};
-
-list<LUCacheNode> luCache;
-int cap = 5;
 
  
